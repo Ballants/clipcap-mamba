@@ -12,7 +12,7 @@ from utils.utils import create_directory_if_not_exists
 
 
 def prepare_eval_gts(dataset_name):
-    data_path = f'../data/datasets/{dataset_name}/'
+    data_path = f'../data/datasets/{dataset_name}'
     dir_to_save = f'../data/{dataset_name}'
     create_directory_if_not_exists(dir_to_save)
 
@@ -24,7 +24,7 @@ def prepare_eval_gts(dataset_name):
     }
 
     for image_name, caps in tqdm(annotations.items(), desc="Loading captions: ", total=len(annotations)):
-        if os.path.exists(data_path + "images/" + image_name):
+        if os.path.exists(os.path.join(data_path, "images", image_name)):
             image_id = int(image_name.split('.')[0])
             for _, captions in caps.items():
                 for c in captions:
